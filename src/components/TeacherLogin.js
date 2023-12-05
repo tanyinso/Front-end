@@ -24,7 +24,7 @@ const TeacherLogin = () => {
           try {
                const response = await axios({
                     method: 'post',
-                    url: 'http://localhost:8888/teacher/login',
+                    url: 'http://localhost:6666/teacher/login',
                     data: UserLogin,
                     headers: {
                          'Content-Type': 'application/json'

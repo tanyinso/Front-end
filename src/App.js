@@ -38,6 +38,8 @@ function App() {
                     <Route path='/user_signup' element={<UserRegister />} />
                     <Route path='/user_login' element={<UserLogin />} />
                     <Route path='/pay' element={<Payment /> } />
+                    <Route path='/orange-payment' element={<Payment /> } />
+                    <Route path='/mtn-payment' element={<Payment /> } />
                     <Route path='/teachers' element={<Teachers /> } />
                     <Route path='/add_content' element={<AddContent token={token}/> } />
                     <Route path='/teacher_login' element={<TeacherLogin /> } />
