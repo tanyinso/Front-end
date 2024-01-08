@@ -11,7 +11,7 @@ const Teachers = () => {
                try {
                     const response = await axios({
                          method: 'get',
-                         url:'http://localhost:8888/teacher/allteachers',
+                         url:'http://localhost:7777/teacher/allteachers',
                     })
                     setTeachers(response.data)
                } catch (error) {

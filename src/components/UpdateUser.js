@@ -16,7 +16,7 @@ const UpdateUser = ({token}) => {
      useEffect(() => {
           const fetchUser = async () => {
                try {
-                    const response = await axios.get(`http://localhost:8888/user/me/${id}`)
+                    const response = await axios.get(`http://localhost:7777/user/me/${id}`)
                     const user = response.data
                     setName(user.name)
                     setEmail(user.email)
@@ -41,7 +41,7 @@ const UpdateUser = ({token}) => {
           formData.append('profileImg', profilePic);
 
           try {
-               await axios.post('http://localhost:8888/user/update/', formData, {
+               await axios.post('http://localhost:7777/user/update/', formData, {
                     headers: {
                          Authorization: 'Bearer '+ token,
                          'Content-Type': 'multipart/form-data'

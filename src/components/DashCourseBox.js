@@ -18,7 +18,7 @@ const DashCourseBox = ({ createdOn, thumb, token, title ,desc}) => {
                </div>
                <h3 className="title">{title}</h3>
                <h4 className='desc'>{desc}</h4>
-               <Link className='btn' to='/update'>Update content</Link>
+               <Link className='btn' to='{/user_update/${id}}'>Update content</Link>
           </div>
      )
 }

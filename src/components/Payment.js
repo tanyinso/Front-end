@@ -1,7 +1,7 @@
 import React from 'react'
+import MtnPay from './mtnPayment';
 import OrangePayment from './orangePayment';
-import MtnPayment from './mtnPayment';
-
+import '../components/css/style.css'
 const Payment = () => {
  
  return (
@@ -9,8 +9,8 @@ const Payment = () => {
       <h2 className="heading">Buy course</h2>
       <div className="pay-wrapper">
     {/* orange here */}
-    <OrangePayment/>
-    <MtnPayment/>
+<MtnPay/>
+{/* <OrangePayment/> */}
 
      
       </div>

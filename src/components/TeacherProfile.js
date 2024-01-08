@@ -1,78 +1,86 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import CourseBox from './CourseBox'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import CourseBox from './CourseBox';
 
 const TeacherProfile = () => {
-     const { id } = useParams()
-     const [teacher, setTeacher] = useState(null)
-     const [contents, setContent] = useState(null)
-     useEffect(() => {
+  const { id } = useParams();
+  const [teacher, setTeacher] = useState(null);
+  const [contents, setContents] = useState(null);
+  const [totalLessons, setTotalLessons] = useState(0);
+  const [totalVideos, setTotalVideos] = useState(0);
+  const [totalLikes, setTotalLikes] = useState(0);
 
-          const fetchTeacher = async () => {
-               try {
-                    const response = await axios.get(`http://localhost:8888/teacher/profile/${id}`)
-                    setTeacher(response.data)
-               } catch (error) {
-                    console.error(error)
-                    return
-               }
-          }
-          
-          const fetchContent = async () => {
-               try {
-                    const response = await axios.get(`http://localhost:8888/content/teacherContent/${id}`)
-                    setContent(response.data)
-               } catch (error) {
-                    console.error(error)
-                    return
-               }
-          }
+  useEffect(() => {
+    const fetchTeacher = async () => {
+      try {
+        const response = await axios.get(`http://localhost:7777/teacher/profile/${id}`);
+        setTeacher(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-          fetchContent()
-          fetchTeacher()
-     }, [id,setTeacher])
+    const fetchContent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:7777/content/teacherContent/${id}`);
+        setContents(response.data);
 
+        // Calculate total lessons, videos, and likes
+        let lessonsCount = 0;
+        let videosCount = 0;
+        let likesCount = 0;
 
-     return (
-          <>
-               <section className="teacher-profile">
+        response.data.forEach(content => {
+          lessonsCount++;
+          videosCount += content.videos.length;
+          likesCount += content.likes;
+        });
 
-                    <h1 className="heading">Profile datails</h1>
+        setTotalLessons(lessonsCount);
+        setTotalVideos(videosCount);
+        setTotalLikes(likesCount);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-                    <div className="details">
-                         <div className="tutor">
-                              <img src={teacher?.profileImg} alt="" />
-                              <h3>{teacher?.name}</h3>
-                              <span>{teacher?.profession}</span>
-                         </div>
-                         <div className="flex">
-                              <p>total lessons : <span>12</span></p>
-                              <p>total videos : <span>12</span></p>
-                              <p>total likes : <span>2060</span></p>
-                         </div>
-                    </div>
+    fetchContent();
+    fetchTeacher();
+  }, [id]);
 
-               </section>
+  return (
+    <>
+      <section className="teacher-profile">
+        <h1 className="heading">Profile details</h1>
+        <div className="details">
+          <div className="tutor">
+            <img src={teacher?.profileImg} alt="" />
+            <h3>{teacher?.name}</h3>
+            <span>{teacher?.profession}</span>
+          </div>
+          <div className="flex">
+            <p>total lessons: <span>{totalLessons}</span></p>
+            <p>total videos: <span>{totalVideos}</span></p>
+            <p>total likes: <span>{totalLikes}</span></p>
+          </div>
+        </div>
+      </section>
 
-               <section className="playlist-videos">
+      <section className="playlist-videos">
+        <h1 className="heading">Videos</h1>
+        <div className="box-container">
+          {contents ? (
+            contents.map(content => (
+              <CourseBox key={content._id} id={content._id} image={content.thumbnail} title={content.title} desc={content.description} />
+            ))
+          ) : (
+            <h2 className="danger">No courses created</h2>
+          )}
+        </div>
+      </section>
+    </>
+  );
+};
 
-                    <h1 className="heading">Videos</h1>
-
-                    <div className="box-container">
-                         {contents? (
-                              contents.map(content => {
-                                   return (
-                                        <CourseBox key={content._id} id={content._id} image={content.thumbnail} title={content.title} desc={content.description}/>
-                                   )
-                              })
-                         ): <h2 className='danger'>No courses created</h2>}
-                    </div>
-
-               </section>
-
-          </>
-     )
-}
-
-export default TeacherProfile
+export default TeacherProfile;

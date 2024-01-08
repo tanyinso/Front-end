@@ -12,7 +12,7 @@ const Home = () => {
                try {
                     const response = await axios({
                          method: 'get',
-                         url:'http://localhost:8888/content/allcontent',
+                         url:'http://localhost:7777/content/allcontent',
                     })
                     setOurCourses(response.data)
                } catch (error) {

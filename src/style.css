@@ -1104,3 +1104,72 @@ section{
    }
 
 }
+
+/* momo styling */
+/* styles.css */
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container form {
+  display: grid;
+  gap: 10px;
+}
+
+.container label {
+  font-weight: bold;
+}
+
+.container input[type="number"],
+.container input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.container button[type="submit"] {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container button[type="submit"]:hover {
+  background-color: #45a049;
+}
+.success-popup, .error-popup {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   text-align: center;
+ }
+ .success-popup h2{
+   font-size: 18px;
+   color: #27ae60;
+ }
+ .error-popup h2 {
+   font-size: 16px;
+   color:rgb(247, 4, 4);
+ }
+ .success-popup p ,.error-popup p{
+   margin-bottom: 20px;
+   font-size: 14px;
+ }

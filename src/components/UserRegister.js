@@ -27,7 +27,7 @@ const UserRegister = () => {
     userData.append('profileImg', image);
 
     try {
-      await axios.post("http://localhost:8888/user/register", userData, {
+      await axios.post("http://localhost:7777/user/register", userData, {
 
       withCredentials:true,
         headers: {

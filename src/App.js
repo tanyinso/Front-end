@@ -22,6 +22,10 @@ import TeacherLogin from './components/TeacherLogin';
 import Missing from './components/404';
 import TeacherDashProfile from './components/TeacherDashProfile';
 import TeacherUpdate from './components/TeacherUpdate';
+import logo from '../src/components/images/comath.png'
+import PaymentConfirmation from './components/success';
+import ErrorPayment from './components/error';
+import MethodPayed from './components/payedVid';
 
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
@@ -29,6 +33,9 @@ console.log(token)
 function App() {
      return (
           <>
+          <title>
+          <img src={logo}/>
+           </title>
                <Header token={token}/>
                <Routes>
                     <Route exact path='/' element={<Home />} />
@@ -50,8 +57,12 @@ function App() {
                     <Route path='/teacher_update/:id' element={<TeacherUpdate token={token}/>} />
                     <Route path='/preview_video/:id' element={<PreviewVideo/>}/>
                     <Route path='/dashboard' element={<Dashboard token={token} />}/>
+                    <Route path='/success' element={<PaymentConfirmation/>}/>
+                    <Route path='/FailedTransaction' element={<ErrorPayment/>}/>
+                    <Route path='/payed' element={<MethodPayed/>}/>
                     <Route path='/dash_profile/:id' element={<TeacherDashProfile />}/>
                     <Route path='/*' element={<Missing />} />
+                 
                </Routes>
                <Footer />
           </>

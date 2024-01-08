@@ -10,7 +10,7 @@ const Box = ({ course }) => {
 
           const fetchTeacher = async () => {
                try {
-                    const response = await axios.get(`http://localhost:8888/teacher/profile/${id}`)
+                    const response = await axios.get(`http://localhost:7777/teacher/profile/${id}`)
                     setTeacher(response.data)
                } catch (error) {
                     console.error(error)
@@ -50,7 +50,7 @@ const Courses = () => {
                try {
                     const response = await axios({
                          method: 'get',
-                         url: 'http://localhost:8888/content/allcontent',
+                         url: 'http://localhost:7777/content/allcontent',
                     })
                     setOurCourses(response.data)
                } catch (error) {

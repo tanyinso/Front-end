@@ -11,7 +11,7 @@ const Dashboard = ({ token }) => {
           const fetchCourses = async () => {
 
                try {
-                    const response = await axios.get("http://localhost:8888/content/mycontent", {
+                    const response = await axios.get("http://localhost:7777/content/mycontent", {
                          headers: {
                               Authorization: 'Bearer ' + token,
                          }
